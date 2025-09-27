@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Persian Transliterator Options</title>
+  <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Transliteration Settings</h1>
+      <p>Adjust custom mappings and review the default Latin → Persian conversions.</p>
+    </header>
+
+    <section aria-labelledby="custom-heading" class="panel">
+      <div class="panel-header">
+        <h2 id="custom-heading">Custom mappings</h2>
+        <p>Custom pairs override defaults and can help match your typing habits.</p>
+      </div>
+      <form id="addMappingForm" class="mapping-form">
+        <label>
+          Latin input
+          <input id="latinInput" name="latin" maxlength="8" required>
+        </label>
+        <label>
+          Persian output
+          <input id="persianInput" name="persian" maxlength="4" required>
+        </label>
+        <button type="submit">Add / Update</button>
+      </form>
+      <table class="mapping-table" id="customTable" aria-describedby="custom-heading">
+        <thead>
+          <tr>
+            <th scope="col">Latin</th>
+            <th scope="col">Persian</th>
+            <th scope="col" class="actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="default-heading" class="panel">
+      <div class="panel-header">
+        <h2 id="default-heading">Default mapping reference</h2>
+        <p>Base rules applied when no custom mapping is provided.</p>
+      </div>
+      <table class="mapping-table" id="defaultTable" aria-describedby="default-heading">
+        <thead>
+          <tr>
+            <th scope="col">Latin</th>
+            <th scope="col">Persian</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <div id="status" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="../scripts/transliterator.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Persian Transliterator</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Persian Transliterator</h1>
+    </header>
+    <section class="controls">
+      <label class="toggle">
+        <input type="checkbox" id="globalToggle">
+        <span>Enable globally</span>
+      </label>
+      <label class="toggle" id="siteToggleRow">
+        <input type="checkbox" id="siteToggle">
+        <span>Enable on this site</span>
+      </label>
+    </section>
+    <section class="status">
+      <p id="statusMessage"></p>
+    </section>
+    <footer>
+      <p class="hint">Hold Ctrl/Alt/⌘ during typing to bypass transliteration.</p>
+      <button id="openOptions" type="button">Customize mappings</button>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
