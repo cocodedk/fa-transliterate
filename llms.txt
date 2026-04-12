@@ -1,0 +1,23 @@
+# Persian Transliterator
+
+> Chrome extension that converts Latin keyboard input to Persian (Farsi) characters in real time.
+
+Persian Transliterator helps users type Persian text on Latin keyboards without switching layouts. It operates entirely offline and integrates seamlessly with standard web inputs.
+
+## Key Features
+- Real-time Latin → Persian transliteration in text fields
+- Global and per-site enable/disable toggles
+- Right-click context menu for on-demand transliteration
+- Custom mapping editor with validation
+- Modifier-key bypass (Ctrl/Alt/Cmd)
+- No data ever leaves the browser
+
+## Source
+- [GitHub Repository](https://github.com/cocodedk/fa-transliterate)
+- [Releases](https://github.com/cocodedk/fa-transliterate/releases)
+
+## Author
+Babak Bandpey — [cocode.dk](https://cocode.dk) | [LinkedIn](https://linkedin.com/in/babakbandpey)
+
+## License
+Apache-2.0

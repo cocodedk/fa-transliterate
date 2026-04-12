@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ['**']
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Validate manifest
+        run: |
+          if [ ! -f chrome/manifest.json ]; then
+            echo "chrome/manifest.json not found"
+            exit 1
+          fi
+          python3 -m json.tool chrome/manifest.json > /dev/null
+          echo "manifest.json is valid JSON"
+
+      - name: Check extension structure
+        run: |
+          echo "Checking required Chrome extension files..."
+          test -f chrome/manifest.json && echo "✓ manifest.json"
+          test -f chrome/background.js && echo "✓ background.js"
+          test -d chrome/content && echo "✓ content/"
+          test -d chrome/scripts && echo "✓ scripts/"
+          echo "Extension structure check passed."

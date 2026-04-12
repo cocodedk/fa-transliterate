@@ -4,6 +4,7 @@
   "description": "Chrome extension that transliterates Latin input to Persian characters in editable fields.",
   "version": "0.1.0",
   "permissions": [
+    "contextMenus",
     "storage",
     "tabs"
   ],

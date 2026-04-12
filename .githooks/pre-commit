@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eu
+
+# Validate Chrome extension manifest and structure
+echo "Running pre-commit checks..."
+
+if [ ! -f chrome/manifest.json ]; then
+  echo "ERROR: chrome/manifest.json not found" >&2
+  exit 1
+fi
+
+python3 -m json.tool chrome/manifest.json > /dev/null 2>&1 || {
+  echo "ERROR: chrome/manifest.json is invalid JSON" >&2
+  exit 1
+}
+
+echo "✓ manifest.json is valid"
+echo "Pre-commit checks passed."

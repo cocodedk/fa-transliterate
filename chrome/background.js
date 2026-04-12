@@ -6,6 +6,25 @@ const DEFAULT_SETTINGS = {
 
 const STORAGE_KEY = 'faTransliterateSettings';
 
+const CONTEXT_MENU_ID = 'fa-transliterate-selection';
+
+async function rebuildContextMenus() {
+  try {
+    await chrome.contextMenus.removeAll();
+  } catch (error) {
+    // Ignore errors when context menus have not been created yet.
+  }
+  try {
+    chrome.contextMenus.create({
+      id: CONTEXT_MENU_ID,
+      title: 'Transliterate to Persian',
+      contexts: ['editable']
+    });
+  } catch (error) {
+    // Ignore creation errors (e.g., duplicate IDs).
+  }
+}
+
 const getOriginFromUrl = (url) => {
   try {
     const parsed = new URL(url);
@@ -150,11 +169,13 @@ async function broadcastSettings(settings) {
 chrome.runtime.onInstalled.addListener(async () => {
   await ensureDefaults();
   await refreshAllBadges();
+  await rebuildContextMenus();
 });
 
 chrome.runtime.onStartup.addListener(async () => {
   await ensureDefaults();
   await refreshAllBadges();
+  await rebuildContextMenus();
 });
 
 chrome.tabs.onActivated.addListener(async ({ tabId }) => {
@@ -236,4 +257,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   return true;
+});
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (info.menuItemId !== CONTEXT_MENU_ID || !tab || !tab.id) {
+    return;
+  }
+  try {
+    await chrome.tabs.sendMessage(tab.id, { type: 'CONTEXT_TRANSLITERATE_SELECTION' });
+  } catch (error) {
+    // Tab may not accept messages; ignore.
+  }
 });
